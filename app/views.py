@@ -1,17 +1,19 @@
-# from django.shortcuts import render
-from django.http import HttpResponse
-from django.template import loader
+from django.shortcuts import render
+from django.contrib.auth import authenticate, login, logout
 
 
 # Create your views here.
 
 
 def index(request):
-    template = loader.get_template('app/index.html')
-    return HttpResponse(template.render(request=request))
+    return render(request, 'app/index.html')
 
 
 def results(request):
+    pass
+
+
+def my_foods(request):
     pass
 
 
@@ -20,4 +22,11 @@ def food(request):
 
 
 def account(request):
-    pass
+    return render(request, 'app/account.html')
+
+
+def logout(request):
+    if request.user.is_authenticated:
+        logout(request)
+    return render(request, 'app/index.html')
+

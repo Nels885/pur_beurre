@@ -2,31 +2,14 @@
 
 {% block content %}
 
-    <header class="masthead text-center text-white d-flex">
-        <div class="container my-auto">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h1 class="text-uppercase">
-                        <strong>Du gras, oui, mais de qualité !</strong>
-                    </h1>
-                </div>
-                <div class="col-lg-8 mx-auto">
-                    <h2 class="text-xl-center">
-                        <strong>trouvez un produit de substitution pour ceux que vous consommez tous les jours.</strong>
-                    </h2>
-                    <hr>
-                </div>
+    {% include 'app/header.html' with header_title='Du gras, oui, mais de qualité !' %}
 
-                {% include 'app/search_form.html' %}
+    {% load static %}
 
-            </div>
-        </div>
-    </header>
-
-    <section class="bg-primary" id="about">
+    <section class="bg-primary">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 mx-auto text-center">
+                <div class="col-lg-12 mx-auto text-center">
                     <h2 class="section-heading text-white">Colette et Remy</h2>
                     <hr class="light my-4">
                     <p class="text-faded mb-4">Pur Beurre est l'initiative de deux amoureux de la gastronomie française,
@@ -39,11 +22,46 @@
                         suis rendue compte, surtout lorsque nous avons ouvert le restaurant, que je pouvais remplacer
                         les produits aseptisés que j'avais l'habitude d'acheter par de bons produits du terroir Et
                         souvent pour le même prix !"</p>
-                    <p class="text-faded mb-4"><strong>Remy :</strong> "Pour ma part je me rendais déjà dans bien des magasins car j'aime
+                    <p class="text-faded mb-4"><strong>Remy :</strong> "Pour ma part je me rendais déjà dans bien des
+                        magasins car j'aime
                         beaucoup me balader, surtout dans les caves et les cuisines. Je connaissais par coeur le contenu
                         des boutiques bio (dont je raffole) ainsi que les ingrédients de tous les aliments vendus.
                         Lorsque Colette m'a demandé si elle pouvait remplacer son Nutella matinal par un aliment plus
                         sain, je savais tout de suite où le trouver. L'idée de Pur Beurre était née !"</p>
+                </div>
+            </div>
+            <div class="row">
+                <picture class="col-lg-6 mx-auto text-center ">
+                    <img class="img-thumbnail rounded float-left"
+                         src="{% static 'app/img/colette-tatou-full.png' %}" width="100" alt="Colette"/>
+                    <img class="img-thumbnail rounded float-right" src="{% static 'app/img/ratatouille-portrait.jpg' %}"
+                         width="100" alt="Remy"/>
+                </picture>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-heading">Contactez-nous !</h2>
+                    <hr class="my-4">
+                    <p class="mb-5">Si vous souhaitez avoir plus d'information sur notre entreprise, ou si vous
+                        souhaitez
+                        participer à l'aventure.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 ml-auto text-center">
+                    <i class="fas fa-phone fa-3x mb-3 sr-contact-1"></i>
+                    <p>00 00 00 00 00</p>
+                </div>
+                <div class="col-lg-4 mr-auto text-center">
+                    <i class="fas fa-envelope fa-3x mb-3 sr-contact-2"></i>
+                    <p>
+                        <a href="mailto:your-email@your-domain.com">mail@mail.com</a>
+                    </p>
                 </div>
             </div>
         </div>
