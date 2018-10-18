@@ -36,6 +36,9 @@ h6 {
     font-family: "Open Sans", sans-serif;
 }
 
+table {
+    margin: 0 auto;
+}
 .bg-primary {
     background-color: var(--chocolat) !important;
 }
@@ -62,15 +65,15 @@ section#contact {
 @media (min-width: 992px) {
     #mainNav {
         border-bottom: 1px solid rgba(33, 37, 41, .1);
-        background-color: #fff;
+        background-color: var(--candy);
     }
 
     #mainNav .navbar-brand {
-        color: #F05F40;
+        color: var(--chocolat);
     }
 
     #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
-        color: #f05f40;
+        color: var(--chocolat);
     }
 
     #mainNav .navbar-nav > li.nav-item > a.nav-link {
@@ -84,20 +87,20 @@ section#contact {
 
     #mainNav .navbar-nav > li.nav-item > a.nav-link:hover,
     #mainNav .navbar-nav > li.nav-item > a.nav-link:focus:hover {
-        color: #F05F40;
+        color: var(--chocolat);
     }
 
     #mainNav.navbar-shrink {
         border-bottom: 1px solid rgba(33, 37, 41, 0.1);
-        background-color: #fff;
+        background-color: var(--candy);
     }
 
     #mainNav.navbar-shrink .navbar-brand {
-        color: #F05F40;
+        color: var(--chocolat);
     }
 
     #mainNav.navbar-shrink .navbar-brand:focus, #mainNav.navbar-shrink .navbar-brand:hover {
-        color: #f05f40;
+        color: var(--chocolat);
     }
 
     #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link,
@@ -107,6 +110,6 @@ section#contact {
 
     #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:hover,
     #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus:hover {
-        color: #F05F40;
+        color: var(--chocolat);
     }
 }
