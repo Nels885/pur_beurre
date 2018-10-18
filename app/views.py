@@ -24,9 +24,3 @@ def food(request):
 def account(request):
     return render(request, 'app/account.html')
 
-
-def logout(request):
-    if request.user.is_authenticated:
-        logout(request)
-    return render(request, 'app/index.html')
-

@@ -7,23 +7,24 @@
 }
 
 body {
-  font-family: "Scope One", sans-serif;
+    font-family: "Scope One", sans-serif;
+    padding-top: 60px;
 }
 
 hr {
-  border-color: var(--chocolat);
+    border-color: var(--chocolat);
 }
 
 hr.light {
-  border-color: var(--candy);
+    border-color: var(--candy);
 }
 
 a {
-  color: var(--chocolat);
+    color: var(--chocolat);
 }
 
 a:hover {
-  color: var(--chocolat);
+    color: var(--chocolat);
 }
 
 h1,
@@ -36,20 +37,20 @@ h6 {
 }
 
 .bg-primary {
-  background-color: var(--chocolat) !important;
+    background-color: var(--chocolat) !important;
 }
 
 .bg-dark {
-  background-color: var(--fried) !important;
+    background-color: var(--fried) !important;
 }
 
 .text-faded {
-  color: var(--candy);
+    color: var(--candy);
 }
 
 .masthead.butter {
-    height: 30vh;
-    min-height: 200px;
+    height: 20vh;
+    min-height: 90px;
     padding-top: 0;
     padding-bottom: 0;
 }
@@ -58,8 +59,54 @@ section#contact {
     padding: 2rem 0;
 }
 
-/*
-#mainNav {
-    border-bottom: 1px solid rgba(33,37,41,.1);
-    background-color: #fff;
-}*/
+@media (min-width: 992px) {
+    #mainNav {
+        border-bottom: 1px solid rgba(33, 37, 41, .1);
+        background-color: #fff;
+    }
+
+    #mainNav .navbar-brand {
+        color: #F05F40;
+    }
+
+    #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
+        color: #f05f40;
+    }
+
+    #mainNav .navbar-nav > li.nav-item > a.nav-link {
+        padding: 0.5rem 1rem;
+    }
+
+    #mainNav .navbar-nav > li.nav-item > a.nav-link,
+    #mainNav .navbar-nav > li.nav-item > a.nav-link:focus {
+        color: #212529;
+    }
+
+    #mainNav .navbar-nav > li.nav-item > a.nav-link:hover,
+    #mainNav .navbar-nav > li.nav-item > a.nav-link:focus:hover {
+        color: #F05F40;
+    }
+
+    #mainNav.navbar-shrink {
+        border-bottom: 1px solid rgba(33, 37, 41, 0.1);
+        background-color: #fff;
+    }
+
+    #mainNav.navbar-shrink .navbar-brand {
+        color: #F05F40;
+    }
+
+    #mainNav.navbar-shrink .navbar-brand:focus, #mainNav.navbar-shrink .navbar-brand:hover {
+        color: #f05f40;
+    }
+
+    #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link,
+    #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus {
+        color: #212529;
+    }
+
+    #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:hover,
+    #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus:hover {
+        color: #F05F40;
+    }
+}

@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <header class="masthead min text-center text-white d-flex">
+    <header class="masthead butter text-center text-white d-flex">
         <div class="container my-auto">
             <div class="row">
                 <div class="col-lg-10 mx-auto">
@@ -17,7 +17,20 @@
     <section id="services">
         <div class="container">
             <div class="row">
-                <p>Vous êtes connectés</p>
+                <div class="col-lg-6 mx-auto">
+                {% if user.is_authenticated %}
+                    <h2 class="text-center">Informations du compte:</h2>
+                    <br>
+                    <ul>
+                        <li><strong>Nom d'utilisateur :</strong> {{ user.username }}</li>
+                        <li><strong>Nom :</strong> {{ user.last_name }}</li>
+                        <li><strong>Prénom :</strong> {{ user.first_name }}</li>
+                        <li><strong>Email :</strong> {{ user.email }}</li>
+                    </ul>
+                {% else %}
+                    <h2 class="text-center">Vous n'êtes pas connectés</h2>
+                {% endif %}
+                </div>
             </div>
         </div>
     </section>
