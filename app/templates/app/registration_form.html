@@ -1,0 +1,41 @@
+<div class="col-lg-12 mx-auto text-center">
+    <h2>{{ create_user_title }}</h2>
+    <br>
+    {% if form.errors %}
+        <p>Le nom d'utilisateur existe déjà dans notre base de données. Veuillez réessayer.</p>
+    {% endif %}
+
+    <form method="post" action="{% url 'app:account' %}">
+
+        {% csrf_token %}
+
+        <table class="text-left">
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.last_name.label_tag }}</td>
+                <td>{{ form.last_name }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.first_name.label_tag }}</td>
+                <td>{{ form.first_name }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.email.label_tag }}</td>
+                <td>{{ form.email }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password1.label_tag }}</td>
+                <td>{{ form.password1 }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password2.label_tag }}</td>
+                <td>{{ form.password2 }}</td>
+            </tr>
+        </table>
+        <br>
+        <input class="btn btn-primary mb-2" type="submit" value="S'inscrire">
+    </form>
+</div>

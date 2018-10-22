@@ -14,26 +14,37 @@
         </div>
     </header>
 
-    <section id="services">
+    <section id="account">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 mx-auto">
-                {% if user.is_authenticated %}
-                    <h2 class="text-center">Informations du compte:</h2>
-                    <br>
-                    <ul>
-                        <li><strong>Nom d'utilisateur :</strong> {{ user.username }}</li>
-                        <li><strong>Nom :</strong> {{ user.last_name }}</li>
-                        <li><strong>Prénom :</strong> {{ user.first_name }}</li>
-                        <li><strong>Email :</strong> {{ user.email }}</li>
-                    </ul>
-                {% else %}
-                    <div class="text-center">
-                        <h2>Vous n'êtes pas connectés</h2>
+                <div class="col-lg-12 mx-auto">
+
+                    {% if user.is_authenticated %}
+
+                        <h2 class="text-center">Informations du compte:</h2>
                         <br>
-                        <a class="btn btn-primary mb-2" href="{% url 'app:login' %}">Identifiez-vous</a>
-                    </div>
-                {% endif %}
+                        <ul>
+                            <li><strong>Nom d'utilisateur :</strong> {{ user.username }}</li>
+                            <li><strong>Nom :</strong> {{ user.last_name }}</li>
+                            <li><strong>Prénom :</strong> {{ user.first_name }}</li>
+                            <li><strong>Email :</strong> {{ user.email }}</li>
+                        </ul>
+
+                    {% else %}
+
+                        <div class="text-center">
+                            <h2>Vous n'êtes pas connecté</h2>
+                            <br>
+                            <a class="btn btn-primary mb-2" href="{% url 'app:login' %}">Identifiez-vous</a>
+                        </div>
+
+                        <br>
+                        <hr><br>
+
+                        {% include 'app/registration_form.html' with create_user_title="Créer votre compte" %}
+
+                    {% endif %}
+
                 </div>
             </div>
         </div>

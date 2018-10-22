@@ -1,23 +1,13 @@
-<div class="col-lg-6 mx-auto text-center">
+<div class="col-lg-12 mx-auto text-center">
     <h4>{{ login_title }}</h4>
     <br>
     {% if form.errors %}
         <p>Votre nom d'utilisateur et votre mot de passe ne correspondent pas. Veuillez réessayer.</p>
     {% endif %}
 
-    {% if next %}
-        {% if user.is_authenticated %}
-            <p>Votre compte n'a pas accès à cette page. Pour continuer, connectez-vous avec un compte
-                ayant
-                accès.</p>
-        {% else %}
-            <p>Veuillez vous connecter pour voir cette page.</p>
-        {% endif %}
-    {% endif %}
-
     <form method="post" action="{% url 'app:login' %}">
         {% csrf_token %}
-        <table>
+        <table class="text-left">
             <tr>
                 <td>{{ form.username.label_tag }}</td>
                 <td>{{ form.username }}</td>
