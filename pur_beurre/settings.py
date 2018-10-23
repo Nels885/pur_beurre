@@ -127,7 +127,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+INTERNAL_IPS = ['127.0.0.1']
+
+
+# Login redirect
+
 LOGIN_REDIRECT_URL = '/app/account/'
 LOGOUT_REDIRECT_URL = '/'
-
-INTERNAL_IPS = ['127.0.0.1']

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 
-from .forms import RegistrationFrom
+from .forms import RegistrationForm
 
 # Create your views here.
 
@@ -24,13 +24,12 @@ def food(request):
 
 def account(request):
     if request.method == 'POST':
-        form = RegistrationFrom(request.POST)
+        form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/app/login/')
         context = {'form': form}
     else:
-        form = RegistrationFrom()
+        form = RegistrationForm()
         context = {'form': form}
     return render(request, 'app/account.html', context)
-
