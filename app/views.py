@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 
+from .models import Product, Category, Backup
+
 from .forms import RegistrationForm
 
 # Create your views here.
@@ -11,7 +13,13 @@ def index(request):
 
 
 def results(request):
-    pass
+    products = Product.objects.filter(name__icontains="coca cola")
+
+    context = {
+        'products': products
+    }
+
+    return render(request, 'app/results.html', context)
 
 
 def my_foods(request):

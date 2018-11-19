@@ -1,0 +1,11 @@
+{% for product in products %}
+    <h3>{{ product.name }}</h3>
+    <ul>
+
+        <li><strong>Nutrition grade :</strong> {{ product.nutrition_grades }}</li>
+        <li><strong>Url :</strong> {{ product.url }}</li>
+        <li><strong>Image :</strong> {{ product.picture }}</li>
+        <li><strong>list catégories :</strong> {% for category in product.categories.all %}
+            {{ category.name }}, {% endfor %}</li>
+    </ul>
+{% endfor %}
