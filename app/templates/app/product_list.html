@@ -1,11 +1,23 @@
-{% for product in products %}
-    <h3>{{ product.name }}</h3>
-    <ul>
+<div class="col-lg-12">
+    <h2 class="text-center">Vous pouvez remplacer cet aliment par :</h2>
+    <hr class="detail-separator">
+</div>
 
-        <li><strong>Nutrition grade :</strong> {{ product.nutrition_grades }}</li>
-        <li><strong>Url :</strong> {{ product.url }}</li>
-        <li><strong>Image :</strong> {{ product.picture }}</li>
-        <li><strong>list catégories :</strong> {% for category in product.categories.all %}
-            {{ category.name }}, {% endfor %}</li>
-    </ul>
-{% endfor %}
+{% if products|length_is:"0" %}
+    <div class="text-center">
+        Nous n'avons trouvé aucun résultat à cette requête.
+    </div>
+
+{% else %}
+
+    {% for product in products %}
+        <div class="col-mx-4 text-center">
+            <a href="/">
+                <img class="img-responsive" src="{{ product.picture }}" alt="{{ product.name }}">
+            </a>
+            <h3><a href="/">{{ product.name }}</a></h3>
+        </div>
+        {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
+    {% endfor %}
+
+{% endif %}

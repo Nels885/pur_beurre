@@ -46,8 +46,8 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <form class="form-inline my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Search">
+                    <form class="form-inline my-lg-0" action="{% url 'app:search' %}" method="get" accept-charset="utf-8">
+                        <input class="form-control mr-sm-2" type="search" name="query" placeholder="Rechercher" aria-label="Search">
                     </form>
                 </li>
                 <li class="nav-item">

@@ -12,10 +12,15 @@ def index(request):
     return render(request, 'app/index.html')
 
 
-def results(request):
-    products = Product.objects.filter(name__icontains="coca cola")
+def search(request):
+    query = request.GET.get('query')
+    if not query:
+        return redirect('/')
+    else:
+        products = Product.objects.filter(name__icontains=query)
 
     context = {
+        'search': query,
         'products': products
     }
 
