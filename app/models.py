@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class Product(models.Model):
     name = models.CharField(max_length=200)
-    nutriscore = models.CharField(max_length=10)
+    nutrition_grades = models.CharField(max_length=10)
     url = models.URLField()
     picture = models.URLField()
 
