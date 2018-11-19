@@ -2,5 +2,5 @@
 
 .idea/*
 venv/*
-db*
+db.*
 database_conf
