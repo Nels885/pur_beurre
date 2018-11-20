@@ -2,6 +2,8 @@ from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
 
+from .models import Product, Category
+
 # Create your tests here.
 
 
@@ -49,3 +51,19 @@ class AccountPageTestCase(TestCase):
         })
         new_users = User.objects.count()
         self.assertEqual(new_users, old_users)
+
+
+# Test Result Page
+class ResultPageTestCase(TestCase):
+
+    def setUp(self):
+        nutella = Product.objects.create(name="Nutella")
+        category = Category.objects.create(name="Chocolat")
+        category.products.add(nutella)
+        self.product = Product.objects.get(name="Nutella")
+
+    def test_result_page(self):
+        response = self.client.get(reverse('app:search'), {
+            'query': 'nutella'
+        })
+        self.assertEqual(response.status_code, 200)

@@ -17,8 +17,16 @@ def search(request):
     if not query:
         return redirect('/')
     else:
-        products = Product.objects.filter(name__icontains=query)
+        cat_list = []
 
+        # Search for different categories for the desired food
+        for product in Product.objects.filter(name__icontains=query):
+            for category in product.categories.all():
+                if category.name not in cat_list:
+                    cat_list.append(category.name)
+
+    # List of products of the first category found
+    products = Product.objects.filter(categories__name=cat_list[0], name__icontains=query)
     context = {
         'search': query,
         'products': products
