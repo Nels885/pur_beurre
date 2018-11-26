@@ -47,6 +47,10 @@ table {
     background-color: var(--fried) !important;
 }
 
+.bg-candy {
+    background-color: var(--candy);
+}
+
 .text-faded {
     color: var(--candy);
 }
@@ -66,10 +70,20 @@ section#account {
     padding: 3rem 0;
 }
 
+#prod-case {
+    padding: 0.25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    max-width: 100%;
+    heigh: 1rem;
+
+}
+
 @media (min-width: 992px) {
     #mainNav {
         border-bottom: 1px solid rgba(33, 37, 41, .1);
-        background-color: var(--candy);
+        background-color: var(--biscuit);
     }
 
     #mainNav .navbar-brand {
@@ -96,7 +110,7 @@ section#account {
 
     #mainNav.navbar-shrink {
         border-bottom: 1px solid rgba(33, 37, 41, 0.1);
-        background-color: var(--candy);
+        background-color: var(--biscuit);
     }
 
     #mainNav.navbar-shrink .navbar-brand {
