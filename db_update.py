@@ -1,5 +1,5 @@
 #! /usr/bin/env python3
-# coding: utf-8
+# coding: utf8
 """
 Update database PostgreSQL with API OpenfoodFacts
 """
@@ -80,8 +80,8 @@ def data_create():
             data_off_name.append(name)
         col.append(colDb)
     col_product = ",".join(col)
-    log.info("Colonnes : %s\n"
-             "Valeurs  : %s" % (col_product, data_off_name))
+    log.info(f"Colonnes : {col_product}\n"
+             f"Valeurs  : {data_off_name}")
 
     nb_line_before = db.select("count(*)", table_prod)[0][0]
 
@@ -92,16 +92,16 @@ def data_create():
             id_category = db.insert(table_cat, [category], "name", True)
         else:
             id_category = cat_id[0][0]
-            log.info("*** Categorie '%s' existe avec l'ID : %s ***" % (category, id_category))
+            log.info(f"*** Categorie '{category}' existe avec l'ID : {id_category} ***")
         results = api.get_request(category)
         for nbProduct in range(len(results) - 1):
             result = results[nbProduct]
             val_product = api.convert_data(result, data_off_name)
 
             # Product information with verbose option
-            log.info("*** PRODUIT N°%s CATEGORIE : '%s' ***\n"
-                     "Product_name : %s\n", str(nbProduct + 1), category, result['product_name'])
-            log.debug("Valeurs du produit : %s\n", val_product)
+            log.info(f"*** PRODUIT N°{nbProduct + 1} CATEGORIE : '{category}' ***\n"
+                     f"Product_name : {result['product_name']}\n")
+            log.debug(f"Valeurs du produit : {val_product}\n")
 
             condition = " name=%s"
             list_id = db.select("id", table_prod, condition, True, [result['product_name']])
@@ -109,12 +109,12 @@ def data_create():
                 id_product = db.insert(table_prod, val_product, col_product, True)
             else:
                 id_product = list_id[0][0]
-                log.info("*** Produit '%s' existe avec l'ID : %s ***" % (result['product_name'], id_product))
+                log.info(f"*** Produit '{result['product_name']}' existe avec l'ID : {id_product} ***")
             db.insert("app_category_products(product_id, category_id)", [id_product, id_category])
 
     nb_line_after = db.select("count(*)", table_prod)[0][0]
-    print("  - {} produits ajoutés\n"
-          "\n## Insertion des données dans la base terminée ##\n".format(nb_line_after - nb_line_before))
+    print(f"  - {nb_line_after - nb_line_before} produits ajoutés\n"
+          "\n## Insertion des données dans la base terminée ##\n")
 
 
 def main():
