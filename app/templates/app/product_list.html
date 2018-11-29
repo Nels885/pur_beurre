@@ -1,21 +1,22 @@
-<div class="col-lg-12 text-center">
-    <h2>Vous pouvez remplacer cet aliment par :</h2>
-    <hr class="detail-separator">
-</div>
+{% if products is None %}
 
-{% if products|length_is:"0" %}
-    <div class="text-center">
-        Nous n'avons trouvé aucun résultat à cette requête.
+    <div class="col-lg-12 text-center">
+        <h2>Nous n'avons trouvé aucun résultat à cette requête.</h2>
     </div>
 
 {% else %}
 
+    <div class="col-lg-12 text-center">
+        <h2>Vous pouvez remplacer cet aliment par :</h2>
+        <hr class="detail-separator">
+    </div>
+
     {% for product in products %}
         <div class="col-sm-4 text-center">
-            <a href="/">
-                    <img class="img-fluid img-thumbnail" src="{{ product.picture }}" alt="{{ product.name }}">
+            <a href="{% url 'app:food' product_id=product.id %}">
+                <img class="img-fluid img-thumbnail" src="{{ product.picture }}" alt="{{ product.name }}">
             </a>
-            <h6><a href="/">{{ product.name }}</a></h6>
+            <h6><a href="{% url 'app:food' product_id=product.id %}">{{ product.name }}</a></h6>
         </div>
         {% if forloop.counter|divisibleby:3 %}
             <div class="clearfix"></div>{% endif %}

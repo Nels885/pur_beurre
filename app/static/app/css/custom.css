@@ -9,6 +9,7 @@
 body {
     font-family: "Scope One", sans-serif;
     padding-top: 60px;
+    background-color: var(--candy);
 }
 
 hr {
@@ -40,7 +41,7 @@ table {
     margin: 0 auto;
 }
 .bg-primary {
-    background-color: var(--chocolat) !important;
+    background-color: var(--caramel) !important;
 }
 
 .bg-dark {
@@ -83,15 +84,15 @@ section#account {
 @media (min-width: 992px) {
     #mainNav {
         border-bottom: 1px solid rgba(33, 37, 41, .1);
-        background-color: var(--biscuit);
+        background-color: var(--chocolat);
     }
 
     #mainNav .navbar-brand {
-        color: var(--chocolat);
+        color: var(--biscuit);
     }
 
     #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
-        color: var(--chocolat);
+        color: var(--biscuit);
     }
 
     #mainNav .navbar-nav > li.nav-item > a.nav-link {
@@ -105,20 +106,20 @@ section#account {
 
     #mainNav .navbar-nav > li.nav-item > a.nav-link:hover,
     #mainNav .navbar-nav > li.nav-item > a.nav-link:focus:hover {
-        color: var(--chocolat);
+        color: var(--biscuit);
     }
 
     #mainNav.navbar-shrink {
         border-bottom: 1px solid rgba(33, 37, 41, 0.1);
-        background-color: var(--biscuit);
+        background-color: var(--chocolat);
     }
 
     #mainNav.navbar-shrink .navbar-brand {
-        color: var(--chocolat);
+        color: var(--biscuit);
     }
 
     #mainNav.navbar-shrink .navbar-brand:focus, #mainNav.navbar-shrink .navbar-brand:hover {
-        color: var(--chocolat);
+        color: var(--biscuit);
     }
 
     #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link,
@@ -128,6 +129,6 @@ section#account {
 
     #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:hover,
     #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus:hover {
-        color: var(--chocolat);
+        color: var(--biscuit);
     }
 }

@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 
 from .models import Product, Category, Backup
 
 from .forms import RegistrationForm
+
 
 # Create your views here.
 
@@ -26,12 +27,14 @@ def search(request):
                     cat_list.append(category.name)
 
     # List of products of the first category found
-    products = Product.objects.filter(categories__name=cat_list[0], name__icontains=query)
+    if len(cat_list) != 0:
+        products = Product.objects.filter(categories__name=cat_list[0], name__icontains=query)
+    else:
+        products = None
     context = {
         'search': query,
         'products': products
     }
-
     return render(request, 'app/results.html', context)
 
 
@@ -39,8 +42,12 @@ def my_foods(request):
     pass
 
 
-def food(request):
-    pass
+def food(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    context = {
+        'product': product
+    }
+    return render(request, 'app/food.html', context)
 
 
 def account(request):
