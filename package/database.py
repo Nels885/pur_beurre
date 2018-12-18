@@ -25,7 +25,7 @@ class Database:
         password = conf_sql['password']
         port = conf_sql['port']
         host = conf_sql['host']
-        dsn = "dbname='{}' user='{}' password='{}' port='{}' host='{}'".format(dbname, user, password, port, host)
+        dsn = f"dbname='{dbname}' user='{user}' password='{password}' port='{port}' host='{host}'"
         try:
             self.conn = psycopg2.connect(dsn)
         except psycopg2.OperationalError as err:

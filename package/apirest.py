@@ -15,19 +15,23 @@ class ApiRest:
             :param log: logging module
         """
         self.log = log
-        self.tag_0 = "&tagtype_0={}&tag_contains_0={}&tag_0={}".format(
-            Glob.infoApi['tagtype_0'],
-            Glob.infoApi['tag_contains_0'],
-            Glob.infoApi['tag_0'])
-        self.tag_1 = "&tagtype_1={}&tag_contains_1={}&tag_1=".format(
-            Glob.infoApi['tagtype_1'],
-            Glob.infoApi['tag_contains_1'])
-        self.cmdRequest = "{}&action={}&sort_by={}&page_size={}&json={}".format(
-            Glob.infoApi['https'],
-            Glob.infoApi['action'],
-            Glob.infoApi['sort_by'],
-            Glob.infoApi['page_size'],
-            Glob.infoApi['json'])
+        info_api = Glob.infoApi
+        self.tag_0 = (
+            f"&tagtype_0={info_api['tagtype_0']}"
+            f"&tag_contains_0={info_api['tag_contains_0']}"
+            f"&tag_0={info_api['tag_0']}"
+        )
+        self.tag_1 = (
+            f"&tagtype_1={info_api['tagtype_1']}"
+            f"&tag_contains_1={info_api['tag_contains_1']}"
+            f"&tag_1="
+        )
+        self.cmdRequest = (
+            f"{info_api['https']}&action={info_api['action']}"
+            f"&sort_by={info_api['sort_by']}"
+            f"&page_size={info_api['page_size']}"
+            f"&json={info_api['json']}"
+        )
         self.data = 'products'
 
     def get_request(self, tag):
@@ -36,7 +40,7 @@ class ApiRest:
             :param tag: value of the reseach
             :return: data in json format
         """
-        r = requests.get("{}{}{}{}".format(self.cmdRequest, self.tag_0, self.tag_1, tag))
+        r = requests.get(f"{self.cmdRequest}{self.tag_0}{self.tag_1}{tag}")
         self.log.info("=============================================================\n"
                       "# Status Code: %s #\n"
                       "# Headers: %s #\n" % (r.status_code, r.headers['content-type']))

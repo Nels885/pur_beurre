@@ -56,6 +56,10 @@ table {
     color: var(--candy);
 }
 
+.text-food {
+    color: var(--biscuit);
+}
+
 .masthead.butter {
     height: 20vh;
     min-height: 90px;
