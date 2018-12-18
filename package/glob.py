@@ -37,7 +37,8 @@ class Glob:
             ('name', 'product_name'),
             ('nutrition_grades', 'nutrition_grades'),
             ('url', 'url'),
-            ('picture', 'image_front_url')
+            ('front_picture', 'image_front_url'),
+            ('nutrition_picture', 'image_nutrition_url')
         ],
         'app_category': (
             'Boissons gazeuses', 'Boissons chaudes', 'Boissons non sucrées', 'Laits', 'Yaourts', 'Fromages',

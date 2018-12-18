@@ -12,14 +12,20 @@
     </div>
 
     {% for product in products %}
-        <div class="col-sm-4 text-center">
-            <a href="{% url 'app:food' product_id=product.id %}">
-                <img class="img-fluid img-thumbnail" src="{{ product.picture }}" alt="{{ product.name }}">
-            </a>
-            <h6><a href="{% url 'app:food' product_id=product.id %}">{{ product.name }}</a></h6>
-        </div>
-        {% if forloop.counter|divisibleby:3 %}
-            <div class="clearfix"></div>{% endif %}
+        {% if forloop.counter <= 6 %}
+            <div class="col-sm-4 text-center">
+                <div id="product" class="col-sm-12">
+                    <a href="{% url 'app:food' product_id=product.id %}">
+                        <img class="img-fluid img-responsive rounded" src="{{ product.picture }}" alt="{{ product.name }}">
+                    </a>
+                </div>
+                <h6><a href="{% url 'app:food' product_id=product.id %}">{{ product.name }}</a></h6>
+                <br>
+            </div>
+            {% if forloop.counter|divisibleby:3 %}
+                <div class="clearfix"></div>
+            {% endif %}
+        {% endif %}
     {% endfor %}
 
 {% endif %}

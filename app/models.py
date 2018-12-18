@@ -9,6 +9,7 @@ class Product(models.Model):
     nutrition_grades = models.CharField(max_length=10)
     url = models.URLField()
     picture = models.URLField()
+    # nutrition_picture = models.URLField()
 
 
 class Category(models.Model):
