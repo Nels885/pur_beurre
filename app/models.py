@@ -7,9 +7,9 @@ from django.contrib.auth.models import User
 class Product(models.Model):
     name = models.CharField(max_length=200)
     nutrition_grades = models.CharField(max_length=10)
+    nutrition_picture = models.URLField(null=True)
     url = models.URLField()
-    picture = models.URLField()
-    # nutrition_picture = models.URLField()
+    front_picture = models.URLField()
 
 
 class Category(models.Model):

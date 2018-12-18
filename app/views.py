@@ -19,21 +19,25 @@ def search(request):
         return redirect('/')
     else:
         cat_list = []
+        nutrition_grades = "e"
 
         # Search for different categories for the desired food
         for product in Product.objects.filter(name__icontains=query):
             for category in product.categories.all():
                 if category.name not in cat_list:
                     cat_list.append(category.name)
+                if product.nutrition_grades < nutrition_grades:
+                    nutrition_grades = product.nutrition_grades
 
     # List of products of the first category found
     if len(cat_list) != 0:
         products = Product.objects.filter(categories__name=cat_list[0], name__icontains=query)
+        results = [product for product in products if product.nutrition_grades <= nutrition_grades]
     else:
-        products = None
+        results = None
     context = {
         'search': query,
-        'products': products
+        'products': results
     }
     return render(request, 'app/results.html', context)
 

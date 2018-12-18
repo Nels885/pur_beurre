@@ -22,7 +22,7 @@ class Glob:
         'https': 'https://fr.openfoodfacts.org/cgi/search.pl?search_simple=1&action=process',
         'action': 'process',
         'sort_by': 'unique_scans_n',
-        'page_size': '100',
+        'page_size': '20',
         'json': '1',
         'tagtype_0': 'countries',
         'tag_contains_0': 'contains',
@@ -37,7 +37,7 @@ class Glob:
             ('name', 'product_name'),
             ('nutrition_grades', 'nutrition_grades'),
             ('url', 'url'),
-            ('front_picture', 'image_front_url'),
+            ('picture', 'image_front_url'),
             ('nutrition_picture', 'image_nutrition_url')
         ],
         'app_category': (
