@@ -14,21 +14,35 @@
         </div>
     </header>
 
-    <section id="account" class="bg-candy">
+    <section id="account" class="bg-primary">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 mx-auto">
+                <div class="col-lg-8 mx-auto text-center table-responsive">
 
                     {% if user.is_authenticated %}
 
-                        <h2 class="text-center">Informations du compte:</h2>
-                        <br>
-                        <ul>
-                            <li><strong>Nom d'utilisateur :</strong> {{ user.username }}</li>
-                            <li><strong>Nom :</strong> {{ user.last_name }}</li>
-                            <li><strong>Prénom :</strong> {{ user.first_name }}</li>
-                            <li><strong>Email :</strong> {{ user.email }}</li>
-                        </ul>
+                        <h2>Informations du compte:</h2>
+                        <hr>
+                        <table class="table table-bordered table-striped text-left">
+                            <tbody>
+                            <tr>
+                                <td><strong>Nom d'utilisateur :</strong></td>
+                                <td>{{ user.username }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Nom :</strong></td>
+                                <td>{{ user.last_name }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Prénom :</strong></td>
+                                <td>{{ user.first_name }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Email :</strong></td>
+                                <td>{{ user.email }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
 
                     {% else %}
 
@@ -38,8 +52,7 @@
                             <a class="btn btn-primary mb-2" href="{% url 'app:login' %}">Identifiez-vous</a>
                         </div>
 
-                        <br>
-                        <hr><br>
+                        <br><hr><br>
 
                         {% include 'app/registration_form.html' with create_user_title="Créer votre compte" %}
 
