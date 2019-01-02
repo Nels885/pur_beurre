@@ -24,11 +24,8 @@ class Glob:
         'sort_by': 'unique_scans_n',
         'page_size': '20',
         'json': '1',
-        'tagtype_0': 'countries',
+        'tagtype_0': 'categories',
         'tag_contains_0': 'contains',
-        'tag_0': 'france',
-        'tagtype_1': 'categories',
-        'tag_contains_1': 'contains'
     }
 
     # Parameters for inserting data into the database
@@ -41,10 +38,10 @@ class Glob:
             ('nutrition_picture', 'image_nutrition_url')
         ],
         'app_category': (
-            'Boissons gazeuses', 'Boissons chaudes', 'Boissons non sucrées', 'Laits', 'Yaourts', 'Fromages',
-            'Plats préparés', 'Céréales et pommes de terre', 'Biscuits et gateaux', 'Desserts', 'Confiseries',
-            'Légumes et dérivés', 'Epicerie', 'Poissons', 'Apéritif', 'Surgelés', 'Conserves', 'Petit-déjeuners',
-            'Sauces', 'Produit de la mer', 'Condiments', 'Plats à base de viande', 'Bonbons', 'Vins'
+            'soda', 'jus', 'café', 'chocolat', 'lait', 'yaourt', 'fromage', 'Biscuit', 'gateau', 'dessert',
+            'épicerie', 'jambon', 'poisson', 'apéritif', 'Surgelé', 'conserve', 'légume',
+            'petit-déjeuner', 'sauce', 'Produit de la mer', 'condiment', 'viande', 'bonbon', 'vin',
+            'charcuterie',
         ),
         'app_category_products': (
             'category_id',

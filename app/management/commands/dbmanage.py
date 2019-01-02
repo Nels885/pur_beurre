@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from app.models import Product, Category
+from app.models import Product
 
 import logging as log
 
@@ -28,20 +28,17 @@ class Command(BaseCommand):
         if options['update']:
             api = ApiRest(log)
             for cat_name in Glob.converDb["app_category"]:
-                category = Category.objects.filter(name=cat_name)
-                if not category:
-                    category = Category.objects.create(name=cat_name)
                 results = api.get_request(cat_name)
                 for result in results:
                     try:
-                        product = Product.objects.create(
+                        Product.objects.create(
                             name=result['product_name'],
                             nutrition_grades=result['nutrition_grades'],
                             url=result['url'],
                             front_picture=result['image_front_url'],
-                            nutrition_picture=result['image_nutrition_url']
+                            nutrition_picture=result['image_nutrition_url'],
+                            category=cat_name
                         )
-                        category.products.add(product)
                     except KeyError as err:
                         log.error(f"Manque la valeur: {err}")
 

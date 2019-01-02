@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
-from .models import Product, Category, Backup
+from .models import Product, Backup
 
 from .forms import RegistrationForm
 
@@ -18,21 +19,19 @@ def search(request):
     if not query:
         return redirect('/')
     else:
-        cat_list = []
+        category = None
         nutrition_grades = "e"
 
         # Search for different categories for the desired food
         for product in Product.objects.filter(name__icontains=query):
-            for category in product.categories.all():
-                if category.name not in cat_list:
-                    cat_list.append(category.name)
                 if product.nutrition_grades < nutrition_grades:
                     nutrition_grades = product.nutrition_grades
+                    category = product.category
 
     # List of products of the first category found
-    if len(cat_list) != 0:
-        products = Product.objects.filter(categories__name=cat_list[0], name__icontains=query)
-        results = [product for product in products if product.nutrition_grades <= nutrition_grades]
+    if category:
+        results = Product.objects.filter(category=category)
+        # results = [product for product in products if product.nutrition_grades <= nutrition_grades]
     else:
         results = None
     context = {
@@ -42,6 +41,7 @@ def search(request):
     return render(request, 'app/results.html', context)
 
 
+@login_required
 def my_foods(request):
     pass
 
@@ -54,6 +54,7 @@ def food(request, product_id):
     return render(request, 'app/food.html', context)
 
 
+# @login_required(login_url='/app/login/')
 def account(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
