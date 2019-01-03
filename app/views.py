@@ -38,13 +38,13 @@ def search(request):
 
         # Search for different categories for the desired food
         for product in Product.objects.filter(name__icontains=query):
-                if product.nutrition_grades < nutrition_grades:
+                if product.nutrition_grades <= nutrition_grades:
                     nutrition_grades = product.nutrition_grades
                     category = product.category
 
     # List of products of the first category found
     if category:
-        results = Product.objects.filter(category=category)
+        results = Product.objects.filter(category=category).order_by('nutrition_grades')
         # results = [product for product in products if product.nutrition_grades <= nutrition_grades]
     else:
         results = None

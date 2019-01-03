@@ -19,7 +19,8 @@
                         <img class="img-fluid rounded" src="{{ product.front_picture }}" alt="{{ product.name }}">
                     </a>
                 </div>
-                <h5><a class="nav-link" href="{% url 'app:food' product_id=product.id %}">{{ product.name }}</a></h5>
+                <h5><a class="nav-link" href="{% url 'app:food' product_id=product.id %}">{{ product.name }}</a>
+                <a class="nav-link" href="/"><i class="fas fa-save" aria-hidden="true"></i> Sauvegarder</a></h5>
                 <br>
             </div>
             {% if forloop.counter|divisibleby:3 %}

@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
-from app.models import Product
+from django.db.utils import IntegrityError
+from app.models import Product, Backup
 
 import logging as log
 
@@ -58,7 +59,11 @@ class Command(BaseCommand):
                         )
                     except KeyError as err:
                         log.error(f"Manque la valeur: {err}")
+                    except IntegrityError as err:
+                        log.error(f"{err}")
 
         elif options['delete']:
-            pass
+            Product.objects.all().delete()
+            Backup.objects.all().delete()
+
 
