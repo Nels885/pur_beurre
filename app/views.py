@@ -33,24 +33,23 @@ def search(request):
     if not query:
         return redirect('/')
     else:
-        category = None
-        nutrition_grades = "e"
 
-        # Search for different categories for the desired food
-        for product in Product.objects.filter(name__icontains=query):
-                if product.nutrition_grades <= nutrition_grades:
-                    nutrition_grades = product.nutrition_grades
-                    category = product.category
+        # Search food in the database
+        products = Product.objects.filter(name__icontains=query).order_by('-nutrition_grades')
 
-    # List of products of the first category found
-    if category:
-        results = Product.objects.filter(category=category).order_by('nutrition_grades')
-        # results = [product for product in products if product.nutrition_grades <= nutrition_grades]
-    else:
-        results = None
+        # Search for alternative foods
+        if products:
+            product = products[0]
+            substitutes = Product.objects.filter(category=product.category,
+                                                 nutrition_grades__lt=product.nutrition_grades).order_by(
+                'nutrition_grades')
+        else:
+            product = substitutes = None
+
     context = {
         'search': query,
-        'products': results
+        'product': product,
+        'substitutes': substitutes
     }
     return render(request, 'app/results.html', context)
 

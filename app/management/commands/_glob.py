@@ -26,3 +26,10 @@ class Glob:
         'petit-déjeuner', 'sauce', 'Produit de la mer', 'condiment', 'viande', 'bonbon', 'vin',
         'charcuterie',
     )
+
+    categoriesNew = (
+        'Sodas', 'Jus de fruits', 'Cafés', 'Cacaos et chocolats en poudre', 'Chocolats au lait', 'Chocolats noirs',
+        'Laits UHT', 'Yaourts aux fruits', 'Yaourts natures', 'Fromages à tartiner', 'Camemberts',
+        'Fromages double crème', 'Fromages blancs', 'Emmentals râpés', 'Munster', 'Fromages apéritif',
+        'Biscuits au chocolat', 'Biscuits et gâteaux',
+    )

@@ -30,7 +30,7 @@ class Command(BaseCommand):
             '--delete',
             action='store_true',
             dest='delete',
-            help='Delete data in the database',
+            help='Delete all data in the database',
         )
 
     def handle(self, *args, **options):
