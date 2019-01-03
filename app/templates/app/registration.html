@@ -1,0 +1,39 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+    <header class="masthead butter text-center text-white d-flex">
+        <div class="container my-auto">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h1 class="text-uppercase">
+                        <strong>Registration</strong>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="account" class="bg-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center table-responsive">
+
+                    <div class="text-center">
+                        <h2>Vous n'êtes pas connecté</h2>
+                        <br>
+                        <a class="btn btn-primary mb-2" href="{% url 'app:login' %}">Identifiez-vous</a>
+                    </div>
+
+                    <br>
+                    <hr>
+                    <br>
+
+                    {% include 'app/registration_form.html' with create_user_title="Créer votre compte" %}
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

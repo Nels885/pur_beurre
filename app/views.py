@@ -11,10 +11,24 @@ from .forms import RegistrationForm
 
 
 def index(request):
+    """
+    View of the index page
+    :param request:
+        Parameters of the request
+    :return:
+        Index page
+    """
     return render(request, 'app/index.html')
 
 
 def search(request):
+    """
+    View of the food search
+    :param request:
+        Parameters of the request
+    :return:
+        Results page or Index page if no found
+    """
     query = request.GET.get('query')
     if not query:
         return redirect('/')
@@ -41,12 +55,28 @@ def search(request):
     return render(request, 'app/results.html', context)
 
 
-@login_required
+@login_required(login_url='/app/registration/')
 def my_foods(request):
+    """
+    View of different foods backed up according to the user
+    :param request:
+        Parameters of the request
+    :return:
+        My_foods page
+    """
     pass
 
 
 def food(request, product_id):
+    """
+    View of the food in detail
+    :param request:
+        Parameters of the request
+    :param product_id:
+        Id of the food
+    :return:
+        Food page with the detail
+    """
     product = get_object_or_404(Product, pk=product_id)
     context = {
         'product': product
@@ -54,8 +84,26 @@ def food(request, product_id):
     return render(request, 'app/food.html', context)
 
 
-# @login_required(login_url='/app/login/')
+@login_required(login_url='/app/registration/')
 def account(request):
+    """
+    view of logged user information
+    :param request:
+        Parameters of the request
+    :return:
+        Account page with user information
+    """
+    return render(request, 'app/account.html')
+
+
+def registration(request):
+    """
+    View for registration of a new user
+    :param request:
+        Parameters of the request
+    :return:
+        Registration page or login page
+    """
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
@@ -65,4 +113,4 @@ def account(request):
     else:
         form = RegistrationForm()
         context = {'form': form}
-    return render(request, 'app/account.html', context)
+    return render(request, 'app/registration.html', context)

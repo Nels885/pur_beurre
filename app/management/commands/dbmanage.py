@@ -3,14 +3,22 @@ from app.models import Product
 
 import logging as log
 
-from package.apirest import ApiRest
-from package.glob import Glob
+from ._apirest import ApiRest
+from ._glob import Glob
 
 
 class Command(BaseCommand):
-    help = 'update database for app'
+    """
+    Commands for integrating values from OpenFoodFacts
+    """
+    help = 'Update database for Pur Beurre'
 
     def add_arguments(self, parser):
+        """
+        Options for interactions with the database
+        :param parser:
+            Command Name
+        """
         parser.add_argument(
             '--update',
             action='store_true',
@@ -25,9 +33,18 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
+        """
+        Method that executes the option chosen by the user
+        :param args:
+            Parameters for the execution of the command
+        :param options:
+            Command name
+        :return:
+            Integration or deletion of data in the database
+        """
         if options['update']:
             api = ApiRest(log)
-            for cat_name in Glob.converDb["app_category"]:
+            for cat_name in Glob.categories:
                 results = api.get_request(cat_name)
                 for result in results:
                     try:
