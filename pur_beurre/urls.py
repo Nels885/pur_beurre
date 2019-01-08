@@ -22,6 +22,7 @@ from app import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('app/', include('app.urls')),
+    path('save/', include('save.urls')),
     path('bibi/', admin.site.urls),
 ]
 

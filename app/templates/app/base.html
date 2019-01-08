@@ -60,7 +60,7 @@
                 </li>
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="/">
+                        <a class="nav-link js-scroll-trigger" href="{%  url 'save:my_foods' %}">
                             <span class="sr-only">Mes aliments</span>
                             <i class="fas fa-cookie-bite fa-2x" aria-hidden="true"></i>
                         </a>

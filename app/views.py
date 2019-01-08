@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
-from .models import Product, Backup
+from .models import Product
 
 from .forms import RegistrationForm
 
@@ -54,18 +54,6 @@ def search(request):
     return render(request, 'app/results.html', context)
 
 
-@login_required(login_url='/app/registration/')
-def my_foods(request):
-    """
-    View of different foods backed up according to the user
-    :param request:
-        Parameters of the request
-    :return:
-        My_foods page
-    """
-    pass
-
-
 def food(request, product_id):
     """
     View of the food in detail
@@ -83,7 +71,7 @@ def food(request, product_id):
     return render(request, 'app/food.html', context)
 
 
-@login_required(login_url='/app/registration/')
+@login_required(login_url='/app/login/')
 def account(request):
     """
     view of logged user information

@@ -52,6 +52,7 @@ class Command(BaseCommand):
                 for result in results:
                     try:
                         Product.objects.create(
+                            barcode=result["_id"],
                             name=result['product_name'],
                             nutrition_grades=result['nutrition_grades'],
                             url=result['url'],
@@ -72,5 +73,3 @@ class Command(BaseCommand):
             with connection.cursor() as cursor:
                 for sql in sequence_sql:
                     cursor.execute(sql)
-
-
