@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
-from app.models import Backup
+from app.models import Product, Backup
 
 # Create your views here.
 
@@ -17,7 +17,7 @@ def my_foods(request):
         My_foods page
     """
     user = request.user
-    backups = Backup.objects.filter(user_id=user.id)
+    backups = Product.objects.filter(backup__user=user.id)
 
     print(backups)
 
