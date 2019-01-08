@@ -1,5 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
+from django.core.management.color import no_style
 from django.db.utils import IntegrityError
+from django.db import connection
 from app.models import Product, Backup
 
 import logging as log
@@ -65,5 +67,10 @@ class Command(BaseCommand):
         elif options['delete']:
             Product.objects.all().delete()
             Backup.objects.all().delete()
+
+            sequence_sql = connection.ops.sequence_reset_sql(no_style(), [Product, Backup])
+            with connection.cursor() as cursor:
+                for sql in sequence_sql:
+                    cursor.execute(sql)
 
 
