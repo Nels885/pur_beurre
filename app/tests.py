@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
+from django.test.client import Client
 
 from .models import Product
 
@@ -20,6 +21,26 @@ class IndexPageTestCase(TestCase):
 class AccountPageTestCase(TestCase):
 
     def setUp(self):
+        self.client = Client()
+        user = User.objects.create_user('john', 'lennon@thebeattles.com', 'johnpassword')
+        user.last_name = 'lennon'
+        user.save()
+
+    def test_account_is_login_page(self):
+        self.client.login(username='john', password='johnpassword')
+        response = self.client.get(reverse('app:account'))
+        self.assertEqual(response.status_code, 200)
+        pass
+
+    def test_account_is_not_login_page(self):
+        response = self.client.get(reverse('app:account'))
+        self.assertEqual(response.status_code, 302)
+
+
+# Test registration Page
+class RegistrationPageTestCase(TestCase):
+
+    def setUp(self):
         user = User.objects.create_user('john', 'lennon@thebeattles.com', 'johnpassword')
         user.last_name = 'lennon'
         user.save()
@@ -28,7 +49,7 @@ class AccountPageTestCase(TestCase):
     # Test if user is registered
     def test_user_is_registered(self):
         old_users = User.objects.count()
-        response = self.client.post(reverse('app:account'), {
+        response = self.client.post(reverse('app:registration'), {
             'username': 'toto',
             'email': 'toto@mail.com',
             'password1': 'totopassword',
@@ -57,9 +78,7 @@ class AccountPageTestCase(TestCase):
 class ResultPageTestCase(TestCase):
 
     def setUp(self):
-        nutella = Product.objects.create(name="Nutella")
-        category = Category.objects.create(name="Chocolat")
-        category.products.add(nutella)
+        Product.objects.create(name="Nutella", category="Chocolat")
         self.product = Product.objects.get(name="Nutella")
 
     def test_result_page(self):

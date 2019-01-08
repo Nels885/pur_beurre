@@ -33,7 +33,17 @@ def my_foods(request):
 
 @login_required(login_url='/app/login/')
 def backup(request, search_id, subs_id):
-
+    """
+    View of the food saved by the user
+    :param request:
+        Parameters of the request
+    :param search_id:
+        Id of the search product
+    :param subs_id:
+        Id of substitute product
+    :return:
+        My_foods page
+    """
     user = User.objects.get(pk=request.user.id)
     print(f"user_id={user.id} type={type(user.id)}")
     Backup.objects.create(user_id=user.id, subs_product_id=subs_id, search_product=search_id)
