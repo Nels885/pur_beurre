@@ -65,7 +65,9 @@ def food(request, product_id):
         Food page with the detail
     """
     product = get_object_or_404(Product, pk=product_id)
+    picture_header = product.front_picture.replace("400.jpg", "full.jpg")
     context = {
+        'picture_header': picture_header,
         'product': product
     }
     return render(request, 'app/food.html', context)
