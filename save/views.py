@@ -19,8 +19,6 @@ def my_foods(request):
     user = request.user
     backups = Product.objects.filter(backup__user=user.id)
 
-    print(backups)
-
     if len(backups) == 0:
         backups = None
 
@@ -45,7 +43,8 @@ def backup(request, search_prod, subs_id):
         My_foods page
     """
     user = User.objects.get(pk=request.user.id)
-    print(f"user_id={user.id} type={type(user.id)}")
-    Backup.objects.create(user_id=user.id, subs_product_id=subs_id, search_product=search_prod)
+    subs_product = Product(pk=subs_id)
+    search_prod = Product(name=search_prod)
+    Backup.objects.create(user=user, subs_product=subs_product, search_product=search_prod)
 
     return redirect('/save/my_foods')

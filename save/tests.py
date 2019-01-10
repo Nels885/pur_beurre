@@ -8,7 +8,7 @@ from app.models import Product, Backup
 # Create your tests here.
 
 
-# Test Result Page
+# Test My Foods Page
 class MyFoodsPageTestCase(TestCase):
 
     def setUp(self):
