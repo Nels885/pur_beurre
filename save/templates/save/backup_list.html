@@ -19,7 +19,7 @@
                         <img class="img-fluid rounded" src="{{ subs.front_picture }}" alt="{{ subs.name }}">
                     </a>
                 </div>
-                <h5><a class="nav-link" href="{% url 'app:food' product_id=subs.id %}">{{ subs.name }}</a>
+                <h5><a class="nav-link" href="{% url 'app:food' product_id=subs.id %}">{{ subs.name }}</a></h5>
                 <br>
             </div>
             {% if forloop.counter|divisibleby:3 %}

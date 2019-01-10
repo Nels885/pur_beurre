@@ -47,7 +47,7 @@ class Command(BaseCommand):
         """
         if options['update']:
             api = ApiRest(log)
-            for cat_name in Glob.newCategories:
+            for cat_name in Glob.categories:
                 results = api.get_request(cat_name)
                 for result in results:
                     try:

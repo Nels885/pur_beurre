@@ -21,18 +21,11 @@ class Glob:
 
     # Parameters for inserting data into the database
     categories = (
-        'soda', 'jus', 'café', 'chocolat', 'lait', 'yaourt', 'fromage', 'Biscuit', 'gateau', 'dessert',
-        'épicerie', 'jambon', 'poisson', 'apéritif', 'Surgelé', 'conserve', 'légume',
-        'petit-déjeuner', 'sauce', 'Produit de la mer', 'condiment', 'viande', 'bonbon', 'vin',
-        'charcuterie',
-    )
-
-    newCategories = (
         'Sodas', 'Jus de fruits', 'Cafés', 'Cacaos et chocolats en poudre', 'Chocolats au lait', 'Chocolats noirs',
         'Produits à tartiner sucrés', 'Laits UHT', 'Yaourts aux fruits', 'Yaourts natures', 'Fromages à tartiner',
         'Camemberts', 'Fromages double crème', 'Fromages blancs', 'Emmentals râpés', 'Munster', 'Fromages apéritif',
         'Biscuits au chocolat', 'Biscuits et gâteaux', 'Popcorn', 'Salades composées', 'Conserves', 'Salades',
         'Légumes frais', 'Sauces', 'Produits de la mer', 'Cornichons', 'Epices', 'Bonbons', 'Viandes surgelées',
-        'Produits à tartiner salés', 'vin', 'Saucissons',
+        'Produits à tartiner salés', 'vin', 'Saucissons', 'Jambons',
 
     )
