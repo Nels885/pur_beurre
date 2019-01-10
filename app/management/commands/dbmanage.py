@@ -2,7 +2,9 @@ from django.core.management.base import BaseCommand, CommandError
 from django.core.management.color import no_style
 from django.db.utils import IntegrityError
 from django.db import connection
-from app.models import Product, Backup
+
+from app.models import Product
+from save.models import Backup
 
 import logging as log
 

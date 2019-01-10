@@ -3,7 +3,8 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.test.client import Client
 
-from app.models import Product, Backup
+from app.models import Product
+from .models import Backup
 
 # Create your tests here.
 
@@ -20,7 +21,7 @@ class MyFoodsPageTestCase(TestCase):
         search = Product.objects.create(name="Nutella", category="Pâte à tartiner")
         subs = Product.objects.create(name="Alter Eco", category="Pâte à tartiner")
         self.product = Product.objects.get(name="Nutella")
-        Backup.objects.create(user_id=user.id, subs_product_id=subs.id, search_product=search.id)
+        Backup.objects.create(user=user, subs_product=subs, search_product=search)
 
     def test_my_foods_is_not_login_page(self):
         response = self.client.get(reverse('save:my_foods'))

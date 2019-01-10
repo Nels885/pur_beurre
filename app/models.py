@@ -12,9 +12,3 @@ class Product(models.Model):
     url = models.URLField()
     front_picture = models.URLField(null=True)
     category = models.URLField(max_length=200)
-
-
-class Backup(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    subs_product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
-    search_product = models.CharField(max_length=200, null=True)

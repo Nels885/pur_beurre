@@ -26,6 +26,6 @@ class Glob:
         'Camemberts', 'Fromages double crème', 'Fromages blancs', 'Emmentals râpés', 'Munster', 'Fromages apéritif',
         'Biscuits au chocolat', 'Biscuits et gâteaux', 'Popcorn', 'Salades composées', 'Conserves', 'Salades',
         'Légumes frais', 'Sauces', 'Produits de la mer', 'Cornichons', 'Epices', 'Bonbons', 'Viandes surgelées',
-        'Produits à tartiner salés', 'vin', 'Saucissons', 'Jambons',
+        'Produits à tartiner salés', 'vin', 'Saucissons', 'Jambons', 'Pizzas',
 
     )

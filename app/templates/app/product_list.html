@@ -20,8 +20,8 @@
                     </a>
                 </div>
                 <h5><a class="nav-link" href="{% url 'app:food' product_id=subs.id %}">{{ subs.name }}</a>
-                <a class="nav-link" href="{% url 'save:backup' subs_id=subs.id search_prod=product.name %}">
-                    <i class="fas fa-save" aria-hidden="true"></i> Sauvegarder</a></h5>
+                    <a class="nav-link" href="{% url 'save:backup' subs_id=subs.id search_id=product.id %}">
+                        <i class="fas fa-save" aria-hidden="true"></i> Sauvegarder</a></h5>
                 <br>
             </div>
             {% if forloop.counter|divisibleby:3 %}
