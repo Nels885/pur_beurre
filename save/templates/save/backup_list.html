@@ -17,7 +17,11 @@
         {% if forloop.counter <= 6 %}
             <div class="col-sm-4 text-center">
                 <a href="{% url 'app:food' product_id=subs.id %}">
-                    <div id="product" class="col-sm-12" style="background-image: url('{{ subs.front_picture }}')"></div>
+                    <div class="col-sm-12 product" style="background-image: url('{{ subs.front_picture }}')">
+                        <h1 class="text-uppercase text-right grades">
+                            <span class="badge badge-pill badge-info">{{ subs.nutrition_grades }}</span>
+                        </h1>
+                    </div>
                 </a>
                 <h5><a href="{% url 'app:food' product_id=subs.id %}">{{ subs.name }}</a></h5>
                     <a class="text-dark" href="{% url 'save:delete' subs_id=subs.id %}">
