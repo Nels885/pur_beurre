@@ -16,15 +16,13 @@
     {% for subs in substitutes %}
         {% if forloop.counter <= 6 %}
             <div class="col-sm-4 text-center">
-                <div id="product" class="col-sm-12">
-                    <a href="{% url 'app:food' product_id=subs.id %}">
-                        <img class="img-fluid rounded" src="{{ subs.front_picture }}" alt="{{ subs.name }}">
-                    </a>
-                </div>
-                <h5><a class="nav-link" href="{% url 'app:food' product_id=subs.id %}">{{ subs.name }}</a>
-                    <a class="nav-link" href="{% url 'save:delete' subs_id=subs.id %}">
-                        <i class="fas fa-stop" aria-hidden="true"></i>Delete</a></h5>
-                <br>
+                <a href="{% url 'app:food' product_id=subs.id %}">
+                    <div id="product" class="col-sm-12" style="background-image: url('{{ subs.front_picture }}')"></div>
+                </a>
+                <h5><a href="{% url 'app:food' product_id=subs.id %}">{{ subs.name }}</a></h5>
+                    <a class="text-dark" href="{% url 'save:delete' subs_id=subs.id %}">
+                        <i class="fas fa-window-close" aria-hidden="true"></i> Suppression</a>
+                <br><br>
             </div>
             {% if forloop.counter|divisibleby:3 %}
                 <div class="clearfix"></div>

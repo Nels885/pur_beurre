@@ -48,6 +48,7 @@ class Command(BaseCommand):
             Integration or deletion of data in the database
         """
         if options['update']:
+            nb_prod_before = Product.objects.count()
             api = ApiRest(log)
             for cat_name in Glob.categories:
                 results = api.get_request(cat_name)
@@ -66,6 +67,9 @@ class Command(BaseCommand):
                         log.error(f"Manque la valeur: {err}")
                     except IntegrityError as err:
                         log.error(f"{err}")
+            nb_prod_after = Product.objects.count()
+            print(f"Nombre de produits ajoutés :    {nb_prod_after - nb_prod_before}")
+            print(f"Nombre de produits total :      {nb_prod_after}")
 
         elif options['delete']:
             Product.objects.all().delete()
