@@ -30,7 +30,6 @@ class AccountPageTestCase(TestCase):
         self.client.login(username='john', password='johnpassword')
         response = self.client.get(reverse('app:account'))
         self.assertEqual(response.status_code, 200)
-        pass
 
     def test_account_is_not_login_page(self):
         response = self.client.get(reverse('app:account'))

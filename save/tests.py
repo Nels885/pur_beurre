@@ -31,4 +31,3 @@ class MyFoodsPageTestCase(TestCase):
         self.client.login(username='john', password='johnpassword')
         response = self.client.get(reverse('save:my_foods'))
         self.assertEqual(response.status_code, 200)
-        pass
