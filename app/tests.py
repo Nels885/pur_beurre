@@ -1,9 +1,9 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.urls import reverse
 from django.contrib.auth.models import User
-from django.test.client import Client
 
 from .models import Product
+
 
 # Create your tests here.
 
@@ -77,11 +77,34 @@ class RegistrationPageTestCase(TestCase):
 class ResultPageTestCase(TestCase):
 
     def setUp(self):
-        Product.objects.create(name="Nutella", category="Chocolat")
+        Product.objects.create(
+            barcode="0123456789",
+            name="Nutella",
+            category="Chocolat",
+            url="https://fr.openfoodfacts.org/produit/3017620406003/nutella-ferrero",
+            front_picture="https://static.openfoodfacts.org/images/products/301/762/040/6003/front_fr.108.400.jpg",
+        )
         self.product = Product.objects.get(name="Nutella")
 
     def test_result_page(self):
-        response = self.client.get(reverse('app:search'), {
-            'query': 'nutella'
-        })
+        response = self.client.get(reverse('app:search'))
+        self.assertEqual(response.status_code, 200)
+
+
+# Test Food Page
+class FoodPageTestCase(TestCase):
+
+    def setUp(self):
+        Product.objects.create(
+            barcode="0123456789",
+            name="Nutella",
+            category="Chocolat",
+            url="https://fr.openfoodfacts.org/produit/3017620406003/nutella-ferrero",
+            front_picture="https://static.openfoodfacts.org/images/products/301/762/040/6003/front_fr.108.400.jpg"
+        )
+        self.product = Product.objects.get(name="Nutella")
+
+    def test_food_page_returns_200(self):
+        product_id = self.product.id
+        response = self.client.get(reverse('app:food', args=(product_id,)))
         self.assertEqual(response.status_code, 200)
