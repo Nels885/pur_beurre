@@ -1,6 +1,10 @@
 # Pur Beurre
 
-Pure Beurre is a Python application made with the Django framework. This allows the user to search for a substitute food based on nutrition grade.
+Pur Beurre is a Python application made with the Django framework. This allows the user to search for a substitute food based on nutrition grade.
+
+Food information that is embedded in the database has been retrieved through the OpenFoodFacts API.
+
+![alt text](pictures/index_screenshot.png)
 
 ## Start guide
 
@@ -32,6 +36,44 @@ Collect the pur_beurre repo and install the dependencis as below:
     $ git clone https://github.com/Nels885/pur_beurre.git
     $ cd pur_beurre
     $ pip3 install -r requirements.txt
+
+### Configuration
+
+Then you have to modify the **"settings.py"** file which is in the **"pur_beurre"** folder with the parameters of your database.
+
+Part to edit in settings.py:
+
+![alt text](pictures/db_settings.png)
+
+We will then initialize the database and add in it data thanks to the API of OpenFoodFacts with the commands below.
+
+    $ ./manage.py migrate
+    $ ./manage.py dbmanage --update
+
+example of result after execution of commands:
+
+![alt text](pictures/init_database.png)
+
+You must also create a super user with the command below.
+
+    $ ./manage.py createsuperuser
+    
+Just follow the instructions in the console.
+
+## Starting the server
+
+    $ ./manage.py runserver
+
+You can now access your application from your browser at **"localhost: 8000"**
+
+---
+
+this project is part of the formation of "Python application developer" of OpenClassrooms.
+
+
+
+
+
     
 
     
