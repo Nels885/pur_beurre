@@ -17,17 +17,35 @@ class MyFoodsPageTestCase(TestCase):
         user = User.objects.create_user('john', 'lennon@thebeattles.com', 'johnpassword')
         user.last_name = 'lennon'
         user.save()
-        self.user = User.objects.get(username='john')
-        search = Product.objects.create(name="Nutella", category="Pâte à tartiner")
-        subs = Product.objects.create(name="Alter Eco", category="Pâte à tartiner")
+        search = Product.objects.create(
+            barcode="0123456789",
+            name="Nutella",
+            category="Pâte à tartiner",
+            url="https://fr.openfoodfacts.org/produit/3017620406003/nutella-ferrero",
+            front_picture="https://static.openfoodfacts.org/images/products/301/762/040/6003/front_fr.108.400.jpg",
+        )
+        self.subs = Product.objects.create(
+            barcode="9876543210",
+            name="Purée de Cacahuète",
+            category="Pâte à tartiner",
+            url="https://fr.openfoodfacts.org/produit/3390390000153/puree-de-cacahuete-jean-herve",
+            front_picture="https://static.openfoodfacts.org/images/products/339/039/000/0153/front_fr.58.400.jpg")
         self.product = Product.objects.get(name="Nutella")
-        Backup.objects.create(user=user, subs_product=subs, search_product=search)
+        Backup.objects.create(user=user, subs_product=self.subs, search_product=search)
 
-    def test_my_foods_is_not_login_page(self):
+    def test_my_foods_page_redirect(self):
         response = self.client.get(reverse('save:my_foods'))
         self.assertEqual(response.status_code, 302)
 
-    def test_my_foods_page(self):
-        self.client.login(username='john', password='johnpassword')
+    def test_my_foods_page_returns_200(self):
+        self.client.login(username="john", password="johnpassword")
         response = self.client.get(reverse('save:my_foods'))
         self.assertEqual(response.status_code, 200)
+
+    def test_food_is_delete(self):
+        old_backup = Backup.objects.count()
+        subs_id = self.subs.id
+        self.client.login(username="john", password="johnpassword")
+        response = self.client.get(reverse('save:delete', args=(subs_id,)))
+        new_backup = Backup.objects.count()
+        self.assertEqual(new_backup, old_backup - 1)

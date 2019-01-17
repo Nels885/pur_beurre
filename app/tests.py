@@ -80,7 +80,7 @@ class ResultPageTestCase(TestCase):
         Product.objects.create(
             barcode="0123456789",
             name="Nutella",
-            category="Chocolat",
+            category="Pâte à tartiner",
             url="https://fr.openfoodfacts.org/produit/3017620406003/nutella-ferrero",
             front_picture="https://static.openfoodfacts.org/images/products/301/762/040/6003/front_fr.108.400.jpg",
         )
@@ -104,7 +104,7 @@ class FoodPageTestCase(TestCase):
         Product.objects.create(
             barcode="0123456789",
             name="Nutella",
-            category="Chocolat",
+            category="Pâte à tartiner",
             url="https://fr.openfoodfacts.org/produit/3017620406003/nutella-ferrero",
             front_picture="https://static.openfoodfacts.org/images/products/301/762/040/6003/front_fr.108.400.jpg"
         )

@@ -21,6 +21,17 @@ def index(request):
     return render(request, 'app/index.html')
 
 
+def notice(request):
+    """
+    View of the legal notice page
+    :param request:
+        Parameters of the request
+    :return:
+        legal notice page
+    """
+    return render(request, 'app/legal_notice.html')
+
+
 def search(request):
     """
     View of the food search
