@@ -86,9 +86,15 @@ class ResultPageTestCase(TestCase):
         )
         self.product = Product.objects.get(name="Nutella")
 
-    def test_result_page(self):
-        response = self.client.get(reverse('app:search'))
+    def test_result_page_returns_200(self):
+        response = self.client.get(reverse('app:search'), {
+            'query': 'nutella'
+        })
         self.assertEqual(response.status_code, 200)
+
+    def test_result_page_redirect(self):
+        response = self.client.get(reverse('app:search'))
+        self.assertEqual(response.status_code, 302)
 
 
 # Test Food Page
@@ -108,3 +114,8 @@ class FoodPageTestCase(TestCase):
         product_id = self.product.id
         response = self.client.get(reverse('app:food', args=(product_id,)))
         self.assertEqual(response.status_code, 200)
+
+    def test_food_page_returns_404(self):
+        product_id = self.product.id + 1
+        response = self.client.get(reverse('app:food', args=(product_id,)))
+        self.assertEqual(response.status_code, 404)
