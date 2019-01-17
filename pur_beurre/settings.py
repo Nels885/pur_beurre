@@ -28,7 +28,7 @@ if os.environ.get('ENV') == 'PRODUCTION':
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['django-pur-beurre.herokuapp.com']
 
 
 # Application definition
@@ -140,6 +140,7 @@ INTERNAL_IPS = ['127.0.0.1']
 LOGIN_REDIRECT_URL = '/app/account/'
 LOGOUT_REDIRECT_URL = '/'
 
+
 if os.environ.get('ENV') == 'PRODUCTION':
 
     # Static files settings
@@ -153,5 +154,5 @@ if os.environ.get('ENV') == 'PRODUCTION':
     )
 
     # Simplified static file serving.
-    # https://warehouse.python.com/project/whitenoise/
+    # https://warehouse.python.org/project/whitenoise/
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
