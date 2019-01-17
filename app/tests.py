@@ -1,4 +1,4 @@
-from django.test import TestCase, Client
+from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
 
@@ -21,7 +21,6 @@ class IndexPageTestCase(TestCase):
 class AccountPageTestCase(TestCase):
 
     def setUp(self):
-        self.client = Client()
         user = User.objects.create_user('john', 'lennon@thebeattles.com', 'johnpassword')
         user.last_name = 'lennon'
         user.save()
@@ -119,3 +118,11 @@ class FoodPageTestCase(TestCase):
         product_id = self.product.id + 1
         response = self.client.get(reverse('app:food', args=(product_id,)))
         self.assertEqual(response.status_code, 404)
+
+
+# Test Notice Page
+class NoticePageTestCase(TestCase):
+
+    def test_notice_page_returns_200(self):
+        response = self.client.get(reverse('app:notice'))
+        self.assertEqual(response.status_code, 200)

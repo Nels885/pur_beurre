@@ -1,7 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
-from django.test.client import Client
 
 from app.models import Product
 from .models import Backup
@@ -13,7 +12,6 @@ from .models import Backup
 class MyFoodsPageTestCase(TestCase):
 
     def setUp(self):
-        self.client = Client()
         user = User.objects.create_user('john', 'lennon@thebeattles.com', 'johnpassword')
         user.last_name = 'lennon'
         user.save()
