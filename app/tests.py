@@ -76,6 +76,9 @@ class RegistrationPageTestCase(TestCase):
 class ResultPageTestCase(TestCase):
 
     def setUp(self):
+        user = User.objects.create_user('john', 'lennon@thebeattles.com', 'johnpassword')
+        user.last_name = 'lennon'
+        user.save()
         Product.objects.create(
             barcode="0123456789",
             name="Nutella",
@@ -84,6 +87,7 @@ class ResultPageTestCase(TestCase):
             front_picture="https://static.openfoodfacts.org/images/products/301/762/040/6003/front_fr.108.400.jpg",
         )
         self.product = Product.objects.get(name="Nutella")
+        self.client.login(username="john", password="johnpassword")
 
     def test_result_page_returns_200(self):
         response = self.client.get(reverse('app:search'), {

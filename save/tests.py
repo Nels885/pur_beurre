@@ -30,20 +30,20 @@ class MyFoodsPageTestCase(TestCase):
             front_picture="https://static.openfoodfacts.org/images/products/339/039/000/0153/front_fr.58.400.jpg")
         self.product = Product.objects.get(name="Nutella")
         self.backup = Backup.objects.create(user=user, subs_product=subs, search_product=search)
+        self.client.login(username="john", password="johnpassword")
 
     def test_my_foods_page_redirect(self):
+        self.client.logout()
         response = self.client.get(reverse('save:my_foods'))
         self.assertEqual(response.status_code, 302)
 
     def test_my_foods_page_returns_200(self):
-        self.client.login(username="john", password="johnpassword")
         response = self.client.get(reverse('save:my_foods'))
         self.assertEqual(response.status_code, 200)
 
     def test_food_is_delete(self):
         old_backup = Backup.objects.count()
         subs_id = self.backup.id
-        self.client.login(username="john", password="johnpassword")
         response = self.client.get(reverse('save:delete', args=(subs_id,)))
         new_backup = Backup.objects.count()
         self.assertEqual(new_backup, old_backup - 1)
