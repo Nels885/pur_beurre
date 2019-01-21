@@ -99,6 +99,13 @@ class ResultPageTestCase(TestCase):
         response = self.client.get(reverse('app:search'))
         self.assertEqual(response.status_code, 302)
 
+    def test_result_page_not_logged(self):
+        self.client.logout()
+        response = self.client.get(reverse('app:search'), {
+            'query': 'nutella'
+        })
+        self.assertEqual(response.status_code, 200)
+
 
 # Test Food Page
 class FoodPageTestCase(TestCase):
