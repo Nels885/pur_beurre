@@ -46,7 +46,7 @@ def search(request):
     else:
 
         # Search food in the database
-        products = Product.objects.filter(name__icontains=query).order_by('-nutrition_grades')
+        products = Product.objects.filter(name__istartswith=query).order_by('-nutrition_grades')
 
         # Search for alternative foods
         if products:
