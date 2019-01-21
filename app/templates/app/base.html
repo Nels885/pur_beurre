@@ -16,7 +16,8 @@
     <link href="{% static 'app/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
 
     <!-- Custom fonts for this template -->
-    <link href="{% static 'app/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet" type="text/css"/>
 
@@ -56,9 +57,9 @@
                 </li>
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="{%  url 'save:my_foods' %}">
+                        <a class="nav-link js-scroll-trigger" href="{% url 'save:my_foods' %}">
                             <span class="sr-only">Mes aliments</span>
-                            <i class="fas fa-cookie-bite fa-2x" aria-hidden="true"></i>
+                            <i class="fas fa-carrot fa-2x" aria-hidden="true"></i>
                         </a>
                     </li>
                     <li class="nav-item">
