@@ -18,7 +18,7 @@ def my_foods(request):
         My_foods page
     """
     user = request.user
-    backups = Product.objects.filter(backup_substitute__user=user)
+    backups = Backup.objects.filter(user=user)
 
     if len(backups) == 0:
         backups = None
@@ -63,5 +63,5 @@ def delete(request, subs_id):
         My_foods page
     """
     user = User.objects.get(pk=request.user.id)
-    Backup.objects.get(user=user, subs_product=subs_id).delete()
+    Backup.objects.get(user=user, pk=subs_id).delete()
     return redirect('/save/my_foods')

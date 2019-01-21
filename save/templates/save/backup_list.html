@@ -7,7 +7,7 @@
 {% else %}
 
     <div class="col-lg-12 text-center">
-        <h2>Liste de vos aliments enregistrés :</h2>
+        <h2>Liste de vos aliments enregistrés de {{ user.first_name }} {{ user.last_name }} :</h2>
         <br>
         <hr>
         <br>
@@ -16,14 +16,17 @@
     {% for subs in substitutes %}
         {% if forloop.counter <= 6 %}
             <div class="col-sm-4 text-center">
-                <a href="{% url 'app:food' product_id=subs.id %}">
-                    <div class="col-sm-12 product" style="background-image: url('{{ subs.front_picture }}')">
+                <a href="{% url 'app:food' product_id=subs.subs_product.id %}">
+                    <div class="col-sm-12 product" style="background-image: url('{{ subs.subs_product.front_picture }}')">
                         <h1 class="text-uppercase text-right grades">
-                            <span class="badge badge-pill badge-info">{{ subs.nutrition_grades }}</span>
+                            <span class="badge badge-pill badge-info">{{ subs.subs_product.nutrition_grades }}</span>
                         </h1>
                     </div>
                 </a>
-                <h5><a href="{% url 'app:food' product_id=subs.id %}">{{ subs.name }}</a></h5>
+                <h5><a href="{% url 'app:food' product_id=subs.subs_product.id %}">{{ subs.subs_product.name }}</a></h5>
+                <h6>substitut de
+                    <a href="{% url 'app:food' product_id=subs.search_product.id %}">{{ subs.search_product.name }}</a>
+                </h6>
                     <a class="text-dark" href="{% url 'save:delete' subs_id=subs.id %}">
                         <i class="fas fa-window-close" aria-hidden="true"></i> Suppression</a>
                 <br><br>
