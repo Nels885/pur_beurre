@@ -41,6 +41,10 @@ table {
     margin: 0 auto;
 }
 
+input[type="search"], input[type="search"]:focus {
+    background-color: lightgrey;
+}
+
 .bg-primary {
     background-color: var(--caramel) !important;
     color: white;
