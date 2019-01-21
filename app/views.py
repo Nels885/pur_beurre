@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 from .models import Product
+from save.models import Backup
 
 from .forms import RegistrationForm
 
@@ -41,6 +42,7 @@ def search(request):
         Results page or Index page if no found
     """
     query = request.GET.get('query')
+    user = User.objects.get(pk=request.user.id)
     if not query:
         return redirect('/')
     else:
@@ -48,12 +50,13 @@ def search(request):
         # Search food in the database
         products = Product.objects.filter(name__istartswith=query).order_by('-nutrition_grades')
 
-        # Search for alternative foods
+        # Alternative food search excluding user favorites
         if products:
             product = products[0]
-            substitutes = Product.objects.filter(category=product.category,
-                                                 nutrition_grades__lt=product.nutrition_grades).order_by(
-                'nutrition_grades')
+            substitutes = Product.objects.filter(
+                category=product.category,
+                nutrition_grades__lt=product.nutrition_grades
+            ).exclude(backup_substitute__user=user).order_by('nutrition_grades')
         else:
             product = substitutes = None
 
