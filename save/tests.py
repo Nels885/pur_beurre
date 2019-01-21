@@ -22,14 +22,14 @@ class MyFoodsPageTestCase(TestCase):
             url="https://fr.openfoodfacts.org/produit/3017620406003/nutella-ferrero",
             front_picture="https://static.openfoodfacts.org/images/products/301/762/040/6003/front_fr.108.400.jpg",
         )
-        self.subs = Product.objects.create(
+        subs = Product.objects.create(
             barcode="9876543210",
             name="Purée de Cacahuète",
             category="Pâte à tartiner",
             url="https://fr.openfoodfacts.org/produit/3390390000153/puree-de-cacahuete-jean-herve",
             front_picture="https://static.openfoodfacts.org/images/products/339/039/000/0153/front_fr.58.400.jpg")
         self.product = Product.objects.get(name="Nutella")
-        Backup.objects.create(user=user, subs_product=self.subs, search_product=search)
+        self.backup = Backup.objects.create(user=user, subs_product=subs, search_product=search)
 
     def test_my_foods_page_redirect(self):
         response = self.client.get(reverse('save:my_foods'))
@@ -42,7 +42,7 @@ class MyFoodsPageTestCase(TestCase):
 
     def test_food_is_delete(self):
         old_backup = Backup.objects.count()
-        subs_id = self.subs.id
+        subs_id = self.backup.id
         self.client.login(username="john", password="johnpassword")
         response = self.client.get(reverse('save:delete', args=(subs_id,)))
         new_backup = Backup.objects.count()
