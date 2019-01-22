@@ -6,7 +6,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -20,8 +19,11 @@ class Migration(migrations.Migration):
             name='Backup',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('search_product', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='backup_search', to='app.Product')),
-                ('subs_product', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='backup_substitute', to='app.Product')),
+                ('search_product',
+                 models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='backup_search',
+                                   to='app.Product')),
+                ('subs_product', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE,
+                                                   related_name='backup_substitute', to='app.Product')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
